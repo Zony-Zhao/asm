@@ -1,0 +1,41 @@
+;macro.mac 
+
+input macro                    	
+mov ah,01H
+int 21h
+endm
+
+output macro opr1               
+mov dl,opr1
+mov ah,02h
+int 21h
+endm
+
+retsys macro                    	
+mov ah,4ch
+int 21h
+endm
+
+key_str macro opr1            	
+mov dx,offset opr1
+mov ah,10
+int 21h
+endm
+
+display macro opr1           	
+lea dx,opr1
+mov ah,9
+int 21h
+endm
+
+divis macro opr1                 	
+mov cx,opr1    
+div cx                        	
+mov bx,dx                        	
+mov si,ax                        	
+mov dl, dectab[si]            	
+mov ah,2                        	
+int 21h            
+mov ax,bx                        
+mov dx,0
+endm        
